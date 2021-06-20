@@ -32,7 +32,7 @@ namespace InvoiceProject
         {
             Console.WriteLine("Welcome to Xero Tech Test!");
 
-            CreateInvoiceWithOneIte();
+            CreateInvoiceWithOneItem();
             CreateInvoiceWithMultipleItemsAndQuantities();
             RemoveItem();
             MergeInvoices();
@@ -47,7 +47,7 @@ namespace InvoiceProject
             invoice.AddInvoiceLine(new InvoiceLine()
             {
                 InvoiceLineId = 1,
-                Cost = 6.99,
+                Cost = 6.99m,
                 Quantity = 1,
                 Description = "Apple"
             });
@@ -70,7 +70,7 @@ namespace InvoiceProject
             invoice.AddInvoiceLine(new InvoiceLine()
             {
                 InvoiceLineId = 2,
-                Cost = 5.21,
+                Cost = 5.21m,
                 Quantity = 1,
                 Description = "Orange"
             });
@@ -78,7 +78,7 @@ namespace InvoiceProject
             invoice.AddInvoiceLine(new InvoiceLine()
             {
                 InvoiceLineId = 3,
-                Cost = 5.21,
+                Cost = 5.21m,
                 Quantity = 5,
                 Description = "Pineapple"
             });
@@ -93,7 +93,7 @@ namespace InvoiceProject
             invoice.AddInvoiceLine(new InvoiceLine()
             {
                 InvoiceLineId = 1,
-                Cost = 5.21,
+                Cost = 5.21m,
                 Quantity = 1,
                 Description = "Orange"
             });
@@ -101,7 +101,7 @@ namespace InvoiceProject
             invoice.AddInvoiceLine(new InvoiceLine()
             {
                 InvoiceLineId = 2,
-                Cost = 10.99,
+                Cost = 10.99m,
                 Quantity = 4,
                 Description = "Banana"
             });
@@ -117,7 +117,7 @@ namespace InvoiceProject
             invoice1.AddInvoiceLine(new InvoiceLine()
             {
                 InvoiceLineId = 1,
-                Cost = 10.33,
+                Cost = 10.33m,
                 Quantity = 4,
                 Description = "Banana"
             });
@@ -127,7 +127,7 @@ namespace InvoiceProject
             invoice2.AddInvoiceLine(new InvoiceLine()
             {
                 InvoiceLineId = 2,
-                Cost = 5.22,
+                Cost = 5.22m,
                 Quantity = 1,
                 Description = "Orange"
             });
@@ -135,7 +135,7 @@ namespace InvoiceProject
             invoice2.AddInvoiceLine(new InvoiceLine()
             {
                 InvoiceLineId = 3,
-                Cost = 6.27,
+                Cost = 6.27m,
                 Quantity = 3,
                 Description = "Blueberries"
             });
@@ -151,7 +151,7 @@ namespace InvoiceProject
             invoice.AddInvoiceLine(new InvoiceLine()
             {
                 InvoiceLineId = 1,
-                Cost = 6.99,
+                Cost = 6.99m,
                 Quantity = 1,
                 Description = "Apple"
             });
@@ -159,7 +159,7 @@ namespace InvoiceProject
             invoice.AddInvoiceLine(new InvoiceLine()
             {
                 InvoiceLineId = 2,
-                Cost = 6.27,
+                Cost = 6.27m,
                 Quantity = 3,
                 Description = "Blueberries"
             });
@@ -179,7 +179,7 @@ namespace InvoiceProject
                     new InvoiceLine()
                     {
                         InvoiceLineId = 1,
-                        Cost = 6.99,
+                        Cost = 6.99m,
                         Quantity = 1,
                         Description = "Apple"
                     }
@@ -189,3 +189,4 @@ namespace InvoiceProject
             Console.WriteLine(invoice.ToString());
         }
     }
+}

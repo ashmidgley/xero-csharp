@@ -1,22 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace InvoiceProject
 {
+    [Serializable]
     public class Invoice
     {
         public int InvoiceNumber { get; set; }
         public DateTime InvoiceDate { get; set; }
         public List<InvoiceLine> LineItems { get; set; }
 
+        public Invoice()
+        {
+            LineItems = new List<InvoiceLine>();
+        }
+
+        /// <summary>
+        /// AddInvoiceLine adds a new entry to the list of line items
+        /// </summary>
         public void AddInvoiceLine(InvoiceLine invoiceLine)
         {
             LineItems.Add(invoiceLine);
         }
 
-        public void RemoveInvoiceLine(int SOMEID)
+        /// <summary>
+        /// RemoveInvoiceLine removes an existing entry from the list of line items
+        /// </summary>
+        public void RemoveInvoiceLine(int invoiceLineId)
         {
-            throw new NotImplementedException();
+            var entry = LineItems.Single(item => item.InvoiceLineId == invoiceLineId);
+            LineItems.Remove(entry);
         }
 
         /// <summary>
@@ -24,7 +40,7 @@ namespace InvoiceProject
         /// </summary>
         public decimal GetTotal()
         {
-            throw new NotImplementedException();
+            return LineItems.Aggregate(0m, (result, item) => result += item.Cost * item.Quantity);
         }
 
         /// <summary>
@@ -33,7 +49,7 @@ namespace InvoiceProject
         /// <param name="sourceInvoice">Invoice to merge from</param>
         public void MergeInvoices(Invoice sourceInvoice)
         {
-            throw new NotImplementedException();
+            LineItems.AddRange(sourceInvoice.LineItems);
         }
 
         /// <summary>
@@ -41,7 +57,14 @@ namespace InvoiceProject
         /// </summary>
         public Invoice Clone()
         {
-            throw new NotImplementedException();
+            using (var ms = new MemoryStream())
+            {
+                var formatter = new BinaryFormatter();
+                formatter.Serialize(ms, this);
+                ms.Position = 0;
+
+                return (Invoice)formatter.Deserialize(ms);
+            }
         }
 
         /// <summary>
@@ -50,7 +73,7 @@ namespace InvoiceProject
         /// </summary>
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return $"Invoice Number: {InvoiceNumber}, InvoiceDate: {InvoiceDate.ToShortDateString()}, LineItemCount: {LineItems.Count()}";
         }
     }
 }
